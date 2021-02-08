@@ -127,29 +127,44 @@ from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
 
 # Baseline configuration.
-AUTH_LDAP_SERVER_URI = 'ldap://ldap.ops-coffee.cn'
+#AUTH_LDAP_SERVER_URI = 'ldap://ldap.ops-coffee.cn'
+#
+#AUTH_LDAP_BIND_DN = 'uid=authz,ou=Public,dc=ops-coffee,dc=cn'
+#AUTH_LDAP_BIND_PASSWORD = 'CzfdX629K7'
+#AUTH_LDAP_USER_SEARCH = LDAPSearch(
+#    'dc=ops-coffee,dc=cn',
+#    ldap.SCOPE_SUBTREE,
+#    '(uid=%(user)s)',
+#)
+####
+# Baseline configuration.
+#AUTH_LDAP_SERVER_URI = 'ldap://fusion.prv.webex.com:389/DC=fusion,DC=prv,DC=webex,DC=com?sAMAccountName?sub?(objectClass=*)'
+AUTH_LDAP_SERVER_URI = 'ldap://fusion.prv.webex.com:389/'
 
-AUTH_LDAP_BIND_DN = 'uid=authz,ou=Public,dc=ops-coffee,dc=cn'
-AUTH_LDAP_BIND_PASSWORD = 'CzfdX629K7'
+AUTH_LDAP_BIND_DN = 'CN=WxifOSaaS2.gen,OU=Generics,OU=Cisco Users,DC=fusion,DC=prv,DC=webex,DC=com'
+AUTH_LDAP_BIND_PASSWORD = 'OsAAs20psd04'
+
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    'dc=ops-coffee,dc=cn',
+    'OU=Generics,OU=Cisco Users,DC=fusion,DC=prv,DC=webex,DC=com',
     ldap.SCOPE_SUBTREE,
     '(uid=%(user)s)',
 )
+
+
 # Or:
 # AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,dc=ops-coffee,dc=cn'
 
 # Set up the basic group parameters.
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
-    'ou=groups,dc=ops-coffee,dc=cn',
+    'ou=Generics,dc=fusion,dc=webex',
     ldap.SCOPE_SUBTREE,
     '(objectClass=groupOfNames)',
 )
 AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr='cn')
 
 # Simple group restrictions
-AUTH_LDAP_REQUIRE_GROUP = 'cn=svn,ou=groups,dc=ops-coffee,dc=cn'
-AUTH_LDAP_DENY_GROUP = 'cn=git,ou=groups,dc=ops-coffee,dc=cn'
+AUTH_LDAP_REQUIRE_GROUP = 'cn=svn,ou=Generics,dc=webex,dc=com'
+#AUTH_LDAP_DENY_GROUP = 'cn=git,ou=groups,dc=ops-coffee,dc=cn'
 
 # Populate the Django user from the LDAP directory.
 AUTH_LDAP_USER_ATTR_MAP = {
